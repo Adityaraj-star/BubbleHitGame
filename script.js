@@ -39,18 +39,30 @@ function getNewHit() {
     hit.textContent = `${hitVal}`;
 }
 
-function updateScore() {
+function increaseScore() {
     scoreVal += 10;
     score.textContent = `${scoreVal}`;
+}
+
+function decreaseScore() {
+    scoreVal -= 5;
+
+    if (scoreVal < 0) {
+        scoreVal = 0;
+    }
+
+    score.textContent = `${scoreVal}`
 }
 
 panelMain.addEventListener('click', (event) => {
     const bubbleVal = Number(event.target.innerText);
 
     if (hitVal === bubbleVal) {
-        updateScore();
+        increaseScore();
         renderBubbles();
         getNewHit();
+    } else {
+        decreaseScore();
     }
 });
 
